@@ -1,0 +1,32 @@
+if(mining)
+  mining=false
+  keyup(attack)
+  stop
+else
+  mining=true
+  &prevhit="%HITX%%HITY%%HITZ%"
+  #pickslot=getslot("diamond_pickaxe")
+  slot(%#pickslot%)
+  do
+    key(attack)
+    &hit="%HITX%%HITY%%HITZ%"
+  while(&prevhit == &hit)
+  keyup(attack)
+  if("%HITID%" != "air")
+    #bucketslot=getslot("water_bucket")
+    slot(%#bucketslot%)
+    wait(10ms)
+    key(use)
+    wait(1ms)
+    keyup(use)
+    wait(300ms)
+    #bucketslot=getslot("bucket")
+    slot(%#bucketslot%)
+    wait(10ms)
+    key(use)
+    wait(1ms)
+    keyup(use)
+  endif
+  slot(%#pickslot%)
+  mining=false
+endif
